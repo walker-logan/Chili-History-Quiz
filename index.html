@@ -1,20 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Quick Quiz</title>
-    <link rel="stylesheet" href="assets/css/app.css"/>
-  </head>
-  <body>
-    <div class="container">
-      <div id="home" class="flex-center flex-column">
-        <h1>Quick Quiz</h1>
-        <a class="btn" href="/game.html">Play</a>
-        <a class="btn" href="/highscores.html">High Scores</a>
-      </div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web APIs Quiz Game</title>
+    <link rel="stylesheet" href="assets/css/app.css">
+
+</head>
+<body>
+<header class=>
+    <div class="title">Coding Quiz Game<a href="highscores.html" class="highscores float-end">View Highscores</a></div>
+</header>
+<main class="container position-relative">
+    <div id="start" class="hide text-center">
+        <h1 style="text-align: center;">Chili Quiz</h1>
+        <button type="button" id="start-btn">Start!</button> 
     </div>
-    <script src="assets/js/game.js"></script>
-  </body>
+    <div id="rules" class="info-box mt-5" style="width: auto" >
+        <div class="info-title">A good ol' chili quiz</div>
+        <div class="info-list">
+            <div class="info">You have 60 seconds to finish 5 questions.</div>
+            <div class="info">Test your chili history...</div>
+        <div class="buttons">
+            <button class="quit btn btn-primary btn-sm"><a href="#" class="highscores float-end">Exit Quiz</a></button>
+            <button class="restart btn btn-primary btn-sm">Continue</button>
+        </div>
+    </div>
+    <section id="questions" class="hide row quiz-box mt-5" style="width: auto">
+        <div id="time-rem">
+            <span>Time Left: 60</span>
+        </div>   
+        <h1 class="que-text">
+            <span></span>
+        </h1>
+        <div id="choices" class="flex-direction">
+                <div class="option"><span></span></div>
+                <div class="option"><span></span></div>
+                <div class="option"><span></span></div>
+                <div class="option"><span></span></div>
+        </div>
+        <div id="response">
+            <span></span>
+        </div>
+    </section>
+    <div id="quiz-end" class="hide text-center p-5">
+        <div class="flex-direction flex-direction"><h1>End of Quiz!</h1>
+            <h3 class="score"></h3>
+            <h2>Enter Initials:</h2>
+            <input type="text" id="initials" class="mt-1">
+            <button id="save-score">Submit</button>
+        </div>
+    </div>
+</main>
+<script src="assets/js/highscores.js"></script>
+<script src="assets/js/script.js"></script>
+</body>
 </html>
