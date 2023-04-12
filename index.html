@@ -1,83 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chili Quiz</title>
+    <link rel="stylesheet" href="assets/css/app.css" />
+  </head>
+  <body>
+    <!-- homepage -->
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web APIs Quiz Game</title>
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
-    <header>
-        <button class="highscores">View Highscores</button>
-        </div>
+    <header id="homepage">
+      <h1>The Chili Quiz</h1>
+      <h2>
+        "The golden standard that governments around the globe use to check for
+        "chili knowledge" within all industries." - President Obama
+      </h2>
+      <button id="start-btn">Start</button>
+      <button id="highscores-btn">High Scores</button>
     </header>
-   
-    <!-- home page -->
 
-    <main class="container">
-        <div id="start" class="hide">
-        </div>
-        <div id="rules">
-            <div class="info-title">A good ol' chili quiz</div>
-                <div class="info">You have 60 seconds to finish 5 questions.</div>
-                <div class="info">Test your chili history...
-                    <button class="start-btn">Start</button>
-                </div>
-        </div>
-        </div>
-            
-                <!-- end of quiz stage -->
-
-            <div id="quiz-end" class="hide">
-                <h1>End of Quiz!</h1>
-                <h3 class="score"></h3>
-                <h2>Enter Initials:</h2>
-                <input id="initials">
-                <button id="save-score">Submit</button>
-            </div>
-        
-        
-    </main>
     
-    <!-- questions page -->
-
-    <section id="questions" class="hide">
-        <div>
-            <span id="time-left">Time Left: 60</span>
-        </div>
-            <span class="question-text">Test</span>
-            <div id="choices">
-                <div class="choices-span1"><span></span></div>
-                <div class="choices-span2"><span></span></div>
-                <div class="choices-span3"><span></span></div>
-                <div class="choices-span4"><span></span></div>
-            </div>
-                <div id="response">
-                    <span></span>
-                </div>
-        </div>
-    </section> 
-
-    <!-- scores page -->
+    <!-- timer -->
+    <div id="timer-container" class="visible">
+        <h2 id="timer"></h2>
+    </div>
     
-    <section>
-
-        <div id="quiz-end" class="hide">
-            <div><h1>End of Quiz!</h1>
-                <h3 class="score"></h3>
-                <h2>Enter Initials:</h2>
-                <input type="text" id="initials" class="mt-1">
-                <button id="save-score">Submit</button>
-            </div>
+    <!-- questions -->
+    <div id="question-container" class="hidden">
+        <h2 id="questions-text"></h2>
+        
+        <!-- answer buttons -->
+        <div id="answer-container">
+            <button id="answer1" class="answer-btn"></button>
+            <button id="answer2" class="answer-btn"></button>
+            <button id="answer3" class="answer-btn"></button>
+            <button id="answer4" class="answer-btn"></button>
         </div>
-
-    </section>
-
+        
+        <!-- solution display????? -->
+        <div id="solution-container">
+            <p id="solution-text"></p>
+        </div>
+        
+        <!-- end of the quiz -->
+        <div id="end-quiz-container" class="hidden">
+            <h2>How'd you do?</h2>
+            <p id="score-input"></p>
+            <form id="name-submission">
+                <label for="name-submission">What is your Username?</label>
+                <input type="text" name="name-submission" id="player-name" value="">
+                <button type="submit" id="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- high scores -->
+    <div id="highscore-container" class="hidden">
+      <h2>Highscores</h2>
+      <ol id="highscore-list"></ol>
+      <button id="home-btn">Home</button>
+    </div>
     <script src="assets/js/script.js"></script>
 </body>
-
 </html>

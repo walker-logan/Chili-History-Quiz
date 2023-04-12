@@ -1,83 +1,195 @@
-// when i open page i see a start button
-// when i press start button, i see the game elements start and the timer starts counting down
-  // game start function
-  // timer function
-  // some way to get the starting page to disappear
-
-
-  // target buttons
-var choicesSpan1 = document.querySelector('#choices-span1')
-var choicesSpan2 = document.querySelector('#choices-span2')
-var choicesSpan3 = document.querySelector('#choices-span3')
-var choicesSpan4 = document.querySelector('#choices-span4')
-var currentQuestion = {}
-var correctAnswer
-let startBtn = document.querySelector('.start-btn')
-let timeLeft = 6
-let questionIndex = 0
-var score = 0;
-var queCount = 0;
-let questions = [
+var startBtn = document.querySelector("#start-btn");
+var highscoreBtn = document.querySelector("#highscore-btn");
+var homeBtn = document.querySelector("#home-btn");
+var highScoreContainer = document.querySelector("#highscore-container");
+// var loser = document.querySelector("#loser");
+var solutionText = document.querySelector("#solution-text");
+var endQuizContainer = document.querySelector("#end-quiz-container");
+var time;
+var timer = 60;
+var timerElement = document.querySelector("#timer");
+var timerContainer = document.querySelector("#timer-container");
+var questionContainer = document.querySelector("#question-container");
+var questionDisplay = document.querySelector("#question-display");
+var playerName = document.querySelector("#player-name");
+var answerBtns = Array.from(document.getElementsByClassName("answer-btn"));
+var submitBtn = document.querySelector("#submit-btn");
+var header = document.querySelector("#homepage");
+var body = document.body;
+var answerContainer = document.querySelector("#answer-container");
+var answer1 = document.querySelector("#answer1");
+var answer2 = document.querySelector("#answer2");
+var answer3 = document.querySelector("#answer3");
+var answer4 = document.querySelector("#answer4");
+var correctAnswer;
+var scoreInput = document.querySelector("#score-input");
+var scoreList = document.querySelector("#score-list");
+var scoresList;
+var score;
+var index = 0;
+var unansweredQuestions = [];
+var currentQuestion = {};
+var questionsList = [
   {
-    question: "Question goes here.",
-    choices: ["Choice1", "Choice2", "Choice3", "Choice4"],
-    answer: "Choice1"
+    question: "Where did chili con carne (chili with meat) likely originate?",
+    answers: ["Mexico", "Texas", "New Mexico", "Arizona"],
+    solution: "Texas",
   },
-  {
-    question: "Question goes here.",
-    choices: ["Choice1", "Choice2", "Choice3", "Choice4"],
-    answer: "Choice1"
-  },
-  {
-    question: "Question goes here.",
-    choices: ["Choice1", "Choice2", "Choice3", "Choice4"],
-    answer: "Choice1"
-  },
-  {
-    question: "Question goes here.",
-    choices: ["Choice1", "Choice2", "Choice3", "Choice4"],
-    answer: "Choice1"
-  },
-]
 
+  {
+    question:
+      "What was the main ingredient in the chili con carne served at the 1893 World's Fair in Chicago?",
+    answers: ["Beef", "Venison", "Buffalo", "Alligator"],
+    solution: "Buffalo",
+  },
 
-function renderQuestion() {
-  let currentQuestionObject = questions [questionIndex]
-  document.querySelector('.question-text').innerText = currentQuestionObject.question
-  
+  {
+    question:
+      "Which American president was known to be a fan of chili con carne and often served it at the White House?",
+    answers: [
+      "Franklin D. Roosevelt",
+      "Lyndon B. Johnson",
+      "Richard Nixon",
+      "Ronald Reagan",
+    ],
+    solution: "Lyndon B. Johnson",
+  },
+
+  {
+    question: "What was the main controversy surrounding chili?",
+    answers: [
+      "Whether it should be served with beans or without",
+      "Whether it should be made with tomatoes or not",
+      "Whether it was appropriate to eat in public",
+      "Whether it was too spicy for most people",
+    ],
+    solution: "Whether it should be served with beans or without",
+  },
+
+  {
+    question:
+      "Which city in Texas is considered by many to be the birthplace of the modern chili cook-off?",
+    answers: ["San Antonio", "Houston", "Dallas", "Fort Worth"],
+    solution: "San Antonio",
+  },
+];
+
+startBtn.addEventListener("click", startGame);
+highscoreBtn.addEventListener("click", showScores);
+submitBtn.addEventListener("click", submit);
+
+function startGame(e) {
+  e.stopPropagation();
+  header.setAttribute("class", "hidden");
+  questionContainer.setAttribute("class", "visible");
+  timerContainer.setAttribute("class", "visible");
+  index = 0;
+  unansweredQuestions = [...questionsList];
+  startTimer();
+  displayQuestion();
 }
 
-// console.log('hello')
+function displayQuestion() {
+  currentQuestion = questionsList[index];
+  questionDisplay.innerText = currentQuestion.question;
+  answer1.innerText = currentQuestion.answers[0];
+  answer2.innerText = currentQuestion.answers[1];
+  answer3.innerText = currentQuestion.answers[2];
+  answer4.innerText = currentQuestion.answers[3];
+  correctAnswer = currentQuestion.solution;
+}
 
-startBtn.addEventListener('click', function() {
-  document.querySelector('#rules').style.display = "none"
-  document.querySelector('#questions').classList.remove('hide')
-  startTimer()
-  renderQuestion()
-}) 
+answerBtns.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    console.log(button.textContent);
+    if (button.textContent !== correctAnswer) {
+      timer -= 15;
+      solutionText.innerText = "Wrong";
+    } else {
+      solutionText.innerText = "Right";
+    }
+    index++;
+    if (index < questionsList.length) {
+      displayQuestion();
+    } else {
+      endQuiz();
+    }
+  });
+});
+
+if (localStorage.getItem("highScores")) {
+  scoresList = JSON.parse(localStorage.getItem("highScores"));
+} else {
+  scoresList = [];
+}
+
+function showScores() {
+  header.setAttribute("class", "hidden");
+  highScoreContainer.setAttribute("class", "visible");
+  printHighscores();
+}
 
 function startTimer() {
-  var timer = setInterval(function() {
-    timeLeft--
-    document.querySelector('#time-left').innerText = " Time Left: " + timeLeft
-  }, 1000)
-      if (timer === 0) clearInterval(timeLeft)
+  time = setInterval(function () {
+    timer--;
+    timerElement.textContent = "Time Remaining: " + timer;
+
+    if (timer <= 0) {
+      clearInterval(time);
+      // youDied();
+    }
+  }, 1000);
 }
 
-function renderQuestion() {
-  currentQuestion = questions[index]
-  questionDisplay.innerText = currentQuestion.question
-  choicesSpan1.innerText = currentQuestion.answers[0]
-  choicesSpan2.innerText = currentQuestion.answers[1]
-  choicesSpan3.innerText = currentQuestion.answers[2]
-  choicesSpan4.innerText = currentQuestion.answers[3]
-  correctAnswer = currentQuestion.solution
+// function lose() {
+//   timerContainer.setAttribute("class", "hidden");
+//   loser.setAttribute("class", "visible");
+//   questionContainer.setAttribute("class", "hidden");
+// }
+
+function endQuiz() {
+  body.style.backgroundImage = `url(assets/Images/Maiden.jpg)`;
+  clearInterval(time);
+  score = timer;
+  if (score <= 0) {
+  } else {
+    console.log(score);
+    questionContainer.setAttribute("class", "hidden");
+    victoryContainer.setAttribute("class", "visible");
+    scoreInput.innerText = "your final score: " + score;
+    timerContainer.setAttribute("class", "hidden");
+  }
 }
 
-function quizEnd(){
-  quizBox.classList.add("hide");
-  endBox.classList.remove("hide");
-  const scoreText = document.querySelector(".score");
-  let scoreTag = '<h3 class="score"> Your score was '+ score +' out of 10!</h3>';
-  scoreText.innerHTML = scoreTag; 
+function submit(e) {
+  e.preventDefault();
+  index++;
+  if (playerName.value.trim() == "") {
+    alert("please insert at least one character");
+    return;
+  } else {
+    var newScore = {
+      name: playerName.value.trim(),
+      score: timer,
+    };
+    scoresList.push(newScore);
+
+    scoresList.sort(function (a, b) {
+      return b.score - a.score;
+    });
+    localStorage.setItem("highScores", JSON.stringify(scoresList));
+  }
+  printHighscores();
+}
+
+var scoresPull = JSON.parse(localStorage.getItem("highScores"));
+
+function printHighscores() {
+  for (var i = 0; i < scoresList.length; i++) {
+    let li = document.createElement("li");
+    li.textContent = `${scoresList[i].name} ${scoresList[i].score}`;
+    scoreList.append(li);
+  }
+  highScoreContainer.setAttribute("class", "visible");
+  victoryContainer.setAttribute("class", "hidden");
 }
