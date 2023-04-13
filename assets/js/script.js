@@ -23,7 +23,7 @@ var answer3 = document.querySelector("#answer3");
 var answer4 = document.querySelector("#answer4");
 var correctAnswer;
 var scoreInput = document.querySelector("#score-input");
-var scoresList = document.querySelector("#highscores-list");
+var highScoresList = document.querySelector("#highscores-list");
 var scoresList;
 var score;
 var index = 0;
@@ -142,12 +142,6 @@ function startTimer() {
   }, 1000);
 }
 
-// function lose() {
-//   timerContainer.setAttribute("class", "hidden");
-//   loser.setAttribute("class", "visible");
-//   questionContainer.setAttribute("class", "hidden");
-// }
-
 function endQuiz() {
   clearInterval(time);
   score = timer;
@@ -189,8 +183,8 @@ function printHighscores() {
   for (var i = 0; i < scoresList.length; i++) {
     let li = document.createElement("li");
     li.textContent = `${scoresList[i].name} ${scoresList[i].score}`;
-    scoresList.append(li);
+    highScoresList.append(li);
   }
   highScoreContainer.setAttribute("class", "visible");
-  victoryContainer.setAttribute("class", "hidden");
+  endQuizContainer.setAttribute("class", "hidden");
 }

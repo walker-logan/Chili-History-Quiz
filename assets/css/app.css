@@ -1,25 +1,7 @@
-/* ! @Keyframes
-@keyframes shake {
-  0% { transform: rotate(0deg);}
-  15% {transform: rotate(10deg);}
-  30% {transform: rotate(20deg);}
-  45% {transform: rotate(10deg);}
-  60% {transform: rotate(0deg);}
-  75% {transform: rotate(-10deg);}
-  90% {transform: rotate(-20deg);}
-  100% {transform: rotate(-10deg);}
-} */
-
-/* :root {
- --text-border-black:-1px -1px 0 black, 1px 1px 0 black, -1px 1px black, 1px -1px black;
- --text-border-smoke: -1px -1px 0 whitesmoke, 1px 1px 0 whitesmoke, -1px 1px whitesmoke, 1px -1px whitesmoke;
-} */
-
 * {
   font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: center;
   color: white;
-  /* text-shadow: var(--text-border-black); */
 }
 
 header {
@@ -27,7 +9,6 @@ header {
   position: fixed;
   height: 100%;
   width: 100%;
-  /* white-space: nowrap; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -96,9 +77,22 @@ button {
   flex-direction: column;
 }
 
+#highscores-list {
+  text-align: center;
+}
+
 #end-quiz-container{
   padding-top: 10dvh;
   flex-direction: column;
+}
+
+.highscores-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (max-width: 480px) {

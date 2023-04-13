@@ -20,47 +20,46 @@
       <button id="highscores-btn">High Scores</button>
     </header>
 
-    
     <!-- timer -->
     <div id="timer-container" class="visible">
-        <h2 id="timer"></h2>
+      <h2 id="timer"></h2>
     </div>
-    
+
     <!-- questions -->
     <div id="question-container" class="hidden">
-        <h2 id="questions-text"></h2>
-        
-        <!-- answer buttons -->
-        <div id="answer-container">
-            <button id="answer1" class="answer-btn"></button>
-            <button id="answer2" class="answer-btn"></button>
-            <button id="answer3" class="answer-btn"></button>
-            <button id="answer4" class="answer-btn"></button>
-        </div>
-        
-        <!-- solution display????? -->
-        <div id="solution-container">
-            <p id="solution-text"></p>
-        </div>
+      <h2 id="questions-text"></h2>
+
+      <!-- answer buttons -->
+      <div id="answer-container">
+        <button id="answer1" class="answer-btn"></button>
+        <button id="answer2" class="answer-btn"></button>
+        <button id="answer3" class="answer-btn"></button>
+        <button id="answer4" class="answer-btn"></button>
+      </div>
+
+      <!-- solution display????? -->
+      <div id="solution-container">
+        <p id="solution-text"></p>
+      </div>
     </div>
 
     <!-- end of the quiz -->
     <div id="end-quiz-container" class="hidden">
-            <h2>How'd you do?</h2>
-            <p id="score-input"></p>
-            <form id="name-submission">
-                <label for="name-submission">What is your Username?</label>
-                <input type="text" name="name-submission" id="player-name" value="">
-                <button type="submit" id="submit-btn">Submit</button>
-            </form>
-        </div>
+      <h2>How'd you do?</h2>
+      <p id="score-input"></p>
+      <form id="name-submission">
+        <label for="name-submission">What is your Username?</label>
+        <input type="text" name="name-submission" id="player-name" value="" />
+        <button type="submit" id="submit-btn">Submit</button>
+      </form>
+    </div>
 
     <!-- high scores -->
     <div id="highscores-container" class="hidden">
       <h2>Highscores</h2>
       <ol id="highscores-list"></ol>
-      <button id="home-btn">Home</button>
+      <a href="index.html"><button id="home-btn">Home</button></a>
     </div>
     <script src="assets/js/script.js"></script>
-</body>
+  </body>
 </html>
