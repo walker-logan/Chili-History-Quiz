@@ -23,7 +23,7 @@ var answer3 = document.querySelector("#answer3");
 var answer4 = document.querySelector("#answer4");
 var correctAnswer;
 var scoreInput = document.querySelector("#score-input");
-var scoreList = document.querySelector("#score-list");
+var scoresList = document.querySelector("#highscores-list");
 var scoresList;
 var score;
 var index = 0;
@@ -91,7 +91,7 @@ function startGame(e) {
 
 function displayQuestion() {
   currentQuestion = questionsList[index];
-  console.log(currentQuestion)
+  console.log(currentQuestion);
   questionText.innerText = currentQuestion.question;
   answer1.innerText = currentQuestion.answers[0];
   answer2.innerText = currentQuestion.answers[1];
@@ -137,7 +137,7 @@ function startTimer() {
 
     if (timer <= 0) {
       clearInterval(time);
-      endQuiz()
+      endQuiz();
     }
   }, 1000);
 }
@@ -152,12 +152,12 @@ function endQuiz() {
   clearInterval(time);
   score = timer;
   if (score <= 0) {
-    window.location.reload()
+    window.location.reload();
   } else {
     console.log(score);
     questionContainer.setAttribute("class", "hidden");
     endQuizContainer.setAttribute("class", "visible");
-    scoreInput.innerText = "your final score: " + score;
+    scoreInput.innerText = "Your final score: " + score;
     timerContainer.setAttribute("class", "hidden");
   }
 }
@@ -189,8 +189,8 @@ function printHighscores() {
   for (var i = 0; i < scoresList.length; i++) {
     let li = document.createElement("li");
     li.textContent = `${scoresList[i].name} ${scoresList[i].score}`;
-    scoreList.append(li);
+    scoresList.append(li);
   }
   highScoreContainer.setAttribute("class", "visible");
-  endQuizContainer.setAttribute("class", "hidden");
+  victoryContainer.setAttribute("class", "hidden");
 }
