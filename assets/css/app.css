@@ -16,7 +16,7 @@
 } */
 
 * {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: center;
   color: white;
   /* text-shadow: var(--text-border-black); */
@@ -31,6 +31,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 body {
@@ -41,8 +42,11 @@ body {
 
 button {
   cursor: pointer;
-  background-color: rgb(52, 51, 51);
+  background-color: black;
+  border-style: dashed;
   margin: 5px;
+  padding: 10px;
+  border-radius: 40px;
 }
 
 .hidden {
@@ -59,7 +63,7 @@ button {
   white-space: nowrap;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 50%;
 }
 
 #question-container {
@@ -92,10 +96,10 @@ button {
   flex-direction: column;
 }
 
-/* #victory-container{
+#end-quiz-container{
   padding-top: 10dvh;
   flex-direction: column;
-} */
+}
 
 @media only screen and (max-width: 480px) {
   header {

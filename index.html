@@ -10,7 +10,7 @@
   <body>
     <!-- homepage -->
 
-    <header id="homepage">
+    <header id="homepage" class="visible">
       <h1>The Chili Quiz</h1>
       <h2>
         "The golden standard that governments around the globe use to check for
@@ -42,9 +42,10 @@
         <div id="solution-container">
             <p id="solution-text"></p>
         </div>
-        
-        <!-- end of the quiz -->
-        <div id="end-quiz-container" class="hidden">
+    </div>
+
+    <!-- end of the quiz -->
+    <div id="end-quiz-container" class="hidden">
             <h2>How'd you do?</h2>
             <p id="score-input"></p>
             <form id="name-submission">
@@ -53,10 +54,9 @@
                 <button type="submit" id="submit-btn">Submit</button>
             </form>
         </div>
-    </div>
-    
+        
     <!-- high scores -->
-    <div id="highscore-container" class="hidden">
+    <div id="highscores-container" class="hidden">
       <h2>Highscores</h2>
       <ol id="highscore-list"></ol>
       <button id="home-btn">Home</button>

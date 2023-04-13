@@ -1,7 +1,7 @@
 var startBtn = document.querySelector("#start-btn");
-var highscoreBtn = document.querySelector("#highscore-btn");
+var highscoreBtn = document.querySelector("#highscores-btn");
 var homeBtn = document.querySelector("#home-btn");
-var highScoreContainer = document.querySelector("#highscore-container");
+var highScoreContainer = document.querySelector("#highscores-container");
 // var loser = document.querySelector("#loser");
 var solutionText = document.querySelector("#solution-text");
 var endQuizContainer = document.querySelector("#end-quiz-container");
@@ -10,7 +10,7 @@ var timer = 60;
 var timerElement = document.querySelector("#timer");
 var timerContainer = document.querySelector("#timer-container");
 var questionContainer = document.querySelector("#question-container");
-var questionDisplay = document.querySelector("#question-display");
+var questionText = document.querySelector("#questions-text");
 var playerName = document.querySelector("#player-name");
 var answerBtns = Array.from(document.getElementsByClassName("answer-btn"));
 var submitBtn = document.querySelector("#submit-btn");
@@ -91,7 +91,8 @@ function startGame(e) {
 
 function displayQuestion() {
   currentQuestion = questionsList[index];
-  questionDisplay.innerText = currentQuestion.question;
+  console.log(currentQuestion)
+  questionText.innerText = currentQuestion.question;
   answer1.innerText = currentQuestion.answers[0];
   answer2.innerText = currentQuestion.answers[1];
   answer3.innerText = currentQuestion.answers[2];
@@ -108,7 +109,7 @@ answerBtns.forEach((button) => {
     } else {
       solutionText.innerText = "Right";
     }
-    index++;
+    ++index;
     if (index < questionsList.length) {
       displayQuestion();
     } else {
@@ -136,7 +137,7 @@ function startTimer() {
 
     if (timer <= 0) {
       clearInterval(time);
-      // youDied();
+      endQuiz()
     }
   }, 1000);
 }
@@ -148,14 +149,14 @@ function startTimer() {
 // }
 
 function endQuiz() {
-  body.style.backgroundImage = `url(assets/Images/Maiden.jpg)`;
   clearInterval(time);
   score = timer;
   if (score <= 0) {
+    window.location.reload()
   } else {
     console.log(score);
     questionContainer.setAttribute("class", "hidden");
-    victoryContainer.setAttribute("class", "visible");
+    endQuizContainer.setAttribute("class", "visible");
     scoreInput.innerText = "your final score: " + score;
     timerContainer.setAttribute("class", "hidden");
   }
@@ -165,7 +166,7 @@ function submit(e) {
   e.preventDefault();
   index++;
   if (playerName.value.trim() == "") {
-    alert("please insert at least one character");
+    alert("Please insert at least 1 character.");
     return;
   } else {
     var newScore = {
@@ -191,5 +192,5 @@ function printHighscores() {
     scoreList.append(li);
   }
   highScoreContainer.setAttribute("class", "visible");
-  victoryContainer.setAttribute("class", "hidden");
+  endQuizContainer.setAttribute("class", "hidden");
 }
