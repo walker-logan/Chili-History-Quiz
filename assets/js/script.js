@@ -100,6 +100,8 @@ function displayQuestion() {
   correctAnswer = currentQuestion.solution;
 }
 
+// i used stackoverflow for help on the ! and how to use the arrow function
+
 answerBtns.forEach((button) => {
   button.addEventListener("click", (e) => {
     console.log(button.textContent);
@@ -124,6 +126,8 @@ if (localStorage.getItem("highScores")) {
   scoresList = [];
 }
 
+
+
 function showScores() {
   header.setAttribute("class", "hidden");
   highScoreContainer.setAttribute("class", "visible");
@@ -142,6 +146,8 @@ function startTimer() {
   }, 1000);
 }
 
+// used chat gpt to help make this one :( sorry)
+
 function endQuiz() {
   clearInterval(time);
   score = timer;
@@ -155,6 +161,10 @@ function endQuiz() {
     timerContainer.setAttribute("class", "hidden");
   }
 }
+
+var scoresPull = JSON.parse(localStorage.getItem("highScores"));
+
+// stackoverflow made me understand how to grab the element
 
 function submit(e) {
   e.preventDefault();
@@ -177,7 +187,7 @@ function submit(e) {
   printHighscores();
 }
 
-var scoresPull = JSON.parse(localStorage.getItem("highScores"));
+// this one i had my neighbor come help me
 
 function printHighscores() {
   for (var i = 0; i < scoresList.length; i++) {
